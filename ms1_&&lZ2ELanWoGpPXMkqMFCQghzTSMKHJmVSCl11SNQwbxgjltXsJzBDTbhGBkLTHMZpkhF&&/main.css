@@ -1,0 +1,231 @@
+
+
+a.catch {
+    text-decoration: none !important;
+
+}
+
+.mode>button {
+    margin-bottom: 8px;
+
+}
+
+.but {
+    background-color: #004A7F;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: none;
+    color: #FFFFFF;
+    display: inline-block;
+    font-family: Arial;
+    font-size: 20px;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-animation: glowing 1500ms infinite;
+    -moz-animation: glowing 1500ms infinite;
+    -o-animation: glowing 1500ms infinite;
+    animation: glowing 1500ms infinite;
+}
+
+@-webkit-keyframes glowing {
+    0% {
+        background-color: #B20000;
+        -webkit-box-shadow: 0 0 3px #B20000;
+    }
+
+    50% {
+        background-color: #FF0000;
+        -webkit-box-shadow: 0 0 40px #FF0000;
+    }
+
+    100% {
+        background-color: #B20000;
+        -webkit-box-shadow: 0 0 3px #B20000;
+    }
+}
+
+@-moz-keyframes glowing {
+    0% {
+        background-color: #B20000;
+        -moz-box-shadow: 0 0 3px #B20000;
+    }
+
+    50% {
+        background-color: #FF0000;
+        -moz-box-shadow: 0 0 40px #FF0000;
+    }
+
+    100% {
+        background-color: #B20000;
+        -moz-box-shadow: 0 0 3px #B20000;
+    }
+}
+
+@-o-keyframes glowing {
+    0% {
+        background-color: #B20000;
+        box-shadow: 0 0 3px #B20000;
+    }
+
+    50% {
+        background-color: #FF0000;
+        box-shadow: 0 0 40px #FF0000;
+    }
+
+    100% {
+        background-color: #B20000;
+        box-shadow: 0 0 3px #B20000;
+    }
+}
+
+@keyframes glowing {
+    0% {
+        background-color: #B20000;
+        box-shadow: 0 0 3px #B20000;
+    }
+
+    50% {
+        background-color: #FF0000;
+        box-shadow: 0 0 40px #FF0000;
+    }
+
+    100% {
+        background-color: #B20000;
+        box-shadow: 0 0 3px #B20000;
+    }
+}
+
+#modal {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2); /* 80% transparent */
+    z-index: 99999;
+    height: 100%;
+    width: 100%;
+    overflow-y: initial !important
+}
+
+
+
+/* Center the modal content (both axes) */
+.modalconent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50%;
+    height: 90%;
+    padding: 20px;
+    overflow-y: auto !important
+}
+
+
+.lay {
+    background-color: rgb(255, 255, 255, 0.8) !important;
+}
+
+#Modal {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow-y: initial !important
+}
+
+.modalconent2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    width: 40%;
+    padding: 20px;
+
+}
+
+@media (max-width: 767.98px) {
+
+    .f1,
+    .f2,
+    .f3 {
+        background-image: none !important;
+    }
+
+    .img.mcg {
+        width: 75px;
+    }
+
+    .modalconent {
+        height: 80%;
+        overflow-y: auto;
+        background-image: none !important;
+    }
+
+    .modalconent2 {
+        width: 80% !important;
+    }
+
+    .pk {
+        margin: 0px;
+        height: 60px;
+        margin-left: 0px;
+    }
+
+}
+.loader-overlay{display:none;justify-content:center;align-items:center;padding:.75rem 1rem;border-radius:.375rem;background:#eef6ff;color:#0b5ed7;font-weight:600;margin-bottom:1rem}
+
+/* Center modal/form content */
+#modal .modalconent2{
+    text-align:center;
+}
+
+#modal form,
+#modal #user-form{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+#modal .form-group,
+#modal .form-check,
+#modal .dialog,
+#modal .modal-body,
+#modal .upper{
+    text-align:center;
+    width:100%;
+    max-width:420px;
+    margin:0 auto;
+}
+
+
+#modal input.form-control{
+    display:block;
+    margin:0 auto;
+    width:100%;
+    max-width:420px;
+}
+
+#modal button#submit,
+#modal button.btn-primary{
+    display:block;
+    margin:0 auto;
+    width:100%;
+    max-width:420px;
+}
+
+
+
+#modal #msg,
+#modal #msg2,
+#modal p{
+    text-align:center;
+}
+

